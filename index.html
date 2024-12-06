@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Special Birthday Celebration</title>
+  <style>
+    /* General Styling */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1, h2 {
+      margin: 20px 0;
+    }
+
+    .page {
+      display: none;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .page.active {
+      display: flex;
+    }
+
+    .skip-button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #ff4081;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .skip-button:hover {
+      background: #d83661;
+    }
+
+    /* Cake Page */
+    .cake-container {
+      position: relative;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .cake {
+      width: 200px;
+      height: 200px;
+      background-color: #ff6f61;
+      border-radius: 10px;
+      position: relative;
+      box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .candle {
+      width: 10px;
+      height: 50px;
+      background-color: #fff;
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 5px;
+    }
+
+    .wish {
+      font-size: 48px;
+      font-weight: bold;
+      margin-top: 20px;
+      display: none;
+    }
+
+    /* Photo Page */
+    .photo-page img {
+      width: 200px;
+      height: 200px;
+      border-radius: 20px;
+      margin: 10px 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .personal-message {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: #ffe0f7;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .navigation-buttons {
+      margin-top: 20px;
+    }
+
+    /* Final Page */
+    #finalPage {
+      background: #ff4081;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    /* Confetti */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: white;
+      border-radius: 50%;
+      animation: fall 3s linear infinite;
+    }
+
+    /* Keyframes for Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-100px);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Warning Page -->
+<div id="warningPage" class="page active">
+  <h1>🚨 Warning 🚨</h1>
+  <h2>You are about to witness something magical!</h2>
+  <button class="skip-button" onclick="nextPage('cakePage')">Proceed</button>
+</div>
+
+<!-- Cake Page -->
+<div id="cakePage" class="page">
+  <div class="cake-container">
+    <div class="cake"></div>
+    <div class="candle"></div>
+  </div>
+  <button class="skip-button" onclick="blowCandles()">Blow Candles</button>
+  <div id="wish" class="wish">Happy Birthday! 🎉</div>
+  <button id="nextButton" class="skip-button" style="display: none;" onclick="nextPage('photoPage1')">Next</button>
+</div>
+
+<!-- Photo Pages -->
+<div id="photoPage1" class="page photo-page">
+  <img src="https://via.placeholder.com/200" alt="Photo 1">
+  <p class="personal-message">This is your first special memory!</p>
+  <div class="navigation-buttons">
+    <button class="skip-button" onclick="nextPage('photoPage2')">Next</button>
+  </div>
+</div>
+
+<div id="photoPage2" class="page photo-page">
+  <img src="https://via.placeholder.com/200" alt="Photo 2">
+  <p class="personal-message">A day worth remembering!</p>
+  <div class="navigation-buttons">
+    <button class="skip-button" onclick="nextPage('photoPage1')">Back</button>
+    <button class="skip-button" onclick="nextPage('photoPage3')">Next</button>
+  </div>
+</div>
+
+<div id="photoPage3" class="page photo-page">
+  <img src="https://via.placeholder.com/200" alt="Photo 3">
+  <p class="personal-message">You make every moment beautiful!</p>
+  <div class="navigation-buttons">
+    <button class="skip-button" onclick="nextPage('photoPage2')">Back</button>
+    <button class="skip-button" onclick="nextPage('photoPage4')">Next</button>
+  </div>
+</div>
+
+<div id="photoPage4" class="page photo-page">
+  <img src="https://via.placeholder.com/200" alt="Photo 4">
+  <p class="personal-message">Smile, it’s your day!</p>
+  <div class="navigation-buttons">
+    <button class="skip-button" onclick="nextPage('photoPage3')">Back</button>
+    <button class="skip-button" onclick="nextPage('photoPage5')">Next</button>
+  </div>
+</div>
+
+<div id="photoPage5" class="page photo-page">
+  <img src="https://via.placeholder.com/200" alt="Photo 5">
+  <p class="personal-message">Let’s make more memories together!</p>
+  <div class="navigation-buttons">
+    <button class="skip-button" onclick="nextPage('photoPage4')">Back</button>
+    <button class="skip-button" onclick="nextPage('finalPage')">Finish</button>
+  </div>
+</div>
+
+<!-- Final Page -->
+<div id="finalPage" class="page">
+  <h1>Thank you for being the best part of our lives!</h1>
+</div>
+
+<!-- Background Music -->
+<audio id="birthdaySong" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
+
+<script>
+  function nextPage(pageId) {
+    document.querySelector('.page.active').classList.remove('active');
+    document.getElementById(pageId).classList.add('active');
+  }
+
+  function blowCandles() {
+    const candle = document.querySelector('.candle');
+    const wish = document.getElementById('wish');
+    const nextButton = document.getElementById('nextButton');
+    const birthdaySong = document.getElementById('birthdaySong');
+
+    candle.style.display = 'none';
+    wish.style.display = 'block';
+    nextButton.style.display = 'block';
+    birthdaySong.play();
+  }
+</script>
+
+</body>
+</html>
